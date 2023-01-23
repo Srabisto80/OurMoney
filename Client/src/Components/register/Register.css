@@ -1,0 +1,69 @@
+body {
+    background-color: var(--green);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+h5 {
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: bold;
+    padding-top: 2rem;
+}
+
+p {
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+input {
+    height: 60px;
+    width: 250px;
+    background-color: var(--gray);
+    border-radius: 15px;
+    border-style: hidden;
+    font-size: 25px;
+}
+
+.logo-name {
+    font-size: 40px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    -webkit-text-stroke: 1.5px var(--black);
+}
+
+.inner-register-div {
+    background-color: #ffffff;
+    text-align: center;
+    border-radius: 25px;
+    margin-left: -0.5rem;
+    margin-top: 15rem;
+    height: 38rem;
+    width: 24.5rem;
+}
+
+.myLink{
+    text-decoration: none;
+}
+
+.logo{
+    width: 5%;
+    margin-left: 47%;
+    padding-top: 2rem;
+}
+
+
+
+@media (min-width:1025px) {
+
+    .inner-register-div {
+        display: block;
+        margin: 0 auto;
+    }
+
+
+}
