@@ -1,6 +1,4 @@
 
-import Layout from './Components/Layout';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './Components/login/Login';
 import ForgotPass from './Components/forgotPass/ForgotPass';
 import Register from './Components/register/Register';

@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const db = "OurMoney";
 
-mongooseBanyan-Labs/company-event-app
+mongoose
   .connect(process.env.MONGODBSERVER, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
