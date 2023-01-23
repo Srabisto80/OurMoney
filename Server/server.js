@@ -13,9 +13,9 @@ require("./Config/config");
 app.use(cors());
 app.use(express.json(), express.urlencoded({ extended: true }));
 
-const Routes = require("./Routes/routes");
+// const Routes = require("./Routes/routes");
 
-Routes(app);
+// Routes(app);
 
 const port = 8080;
 
