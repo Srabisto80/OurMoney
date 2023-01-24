@@ -1,56 +1,66 @@
 
 const bcrypt = require('bcrypt');
-const CreateUser = require('../models/user.model');
+const CreateUser = require('../Modal/Modal');
 
 const User = CreateUser;
 
-module.exports = {
-  registerNewUser: async (req, res, next) => {
+
+  const registerNewUser = async (req, res) => {
+    console.log("body", req.body);
+    const { firstName, lastName, email, password, confirmPassword } =
+    req.body;
     try {
-      const { firstName, lastName, email, password, confirmPassword } =
-        req.body;
+     console.log('line 13')
       if (!firstName || !lastName || !email || !password || !confirmPassword) {
         // respond 400 if missing request body fields
-        res.status(400).json({ message: 'Please fill all the fields' });
-        next();
+        return res.status(400).json({ message: 'Please fill all the fields' });
       } else if (password !== confirmPassword) {
         // respond 400 if passwords do not match
-        res.status(400).json({ message: 'Passwords do not match' });
-        next();
+        return res.status(400).json({ message: 'Passwords do not match' });
       } else {
         const doesExist = await User.findOne({
-          email: request.body.email,
+          email: req.body.email
         });
+        console.log('email', email)
         if (doesExist) {
+          console.log('does exist', doesExist)
           // respond 400 if email already exists
-          response.status(400).json({ message: 'Email is already registered' });
-          next();
+          return res.status(400).json({ message: 'Email is already registered' });
         } else {
           const salt = await bcrypt.genSalt(10);
           const hash = await bcrypt.hash(password, salt);
-          const newUser = await User.create({
+          const newUser = new User({
             firstName,
             lastName,
             email,
             password: hash,
           });
-          res.status(201).json(newUser);
-          next();
+          console.log(newUser, "newUser");
+          newUser.save();
+          return res.status(201).json(newUser);
         }
       }
     } catch (error) {
       console.error(error);
       throw error;
     }
-  },
-  loginUser: async (req, res, next) => {
+  }
+
+  const loginUser =  async (req, res, next) => {
+    
     const { email, password } = req.body;
+    console.log(req.body, "The Body");
     try {
       if (!email || !password) {
         // respond 400 if missing request body fields
-        res.status(400).json({ message: 'Please fill all the fields' });
-        next();
+        return res.status(400).json({ message: 'Please fill all the fields' });
+
       } else {
+        const users = await User.find();
+        console.log("pre-if", users);
+        if (users) {
+          console.log("users found", users)
+        }
         const user = await User.findOne({ email });
         console.log(
           '🚀 ~ file: user.controller.js:88 ~ loginUser: ~ user',
@@ -58,8 +68,7 @@ module.exports = {
         );
         if (!user) {
           // respond 404 if user does not exist
-          res.status(404).json({ message: 'User does not exist' });
-          next();
+          return res.status(404).json({ message: 'User does not exist' });
         } else {
           const validPassword = bcrypt.compareSync(password, user.password);
           console.log(
@@ -68,11 +77,9 @@ module.exports = {
           );
           if (!validPassword) {
             // respond 400 if password is incorrect
-            res.status(400).json({ message: 'Incorrect password' });
-            next();
+            return res.status(400).json({ message: 'Incorrect password' });
           } else {
-            res.status(200).json(user);
-            next();
+            return res.status(200).json(user);
           }
         }
       }
@@ -80,7 +87,6 @@ module.exports = {
       console.error(error);
       throw error;
     }
-  },
-};
+  }
 // };
 module.exports = { registerNewUser, loginUser };

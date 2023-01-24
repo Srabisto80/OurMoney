@@ -15,7 +15,7 @@ const Login = () => {
     console.log('It is working');
     console.log(email, password);
    
-      axios.get('http://localhost:8080/api/Login', { email: email, password: password })
+      axios.post('http://localhost:3001/api/Login', { email: email, password: password })
             .then(res =>console.log(res))
             .catch(err => console.log('err', err))
   };
