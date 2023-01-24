@@ -1,14 +1,16 @@
 import React from 'react';
 import './ForgotPass.css';
-// import Logo from '../../moneyManLogo1.png';
+import Logo from '../../moneyManLogo1.png';
 import { Link } from 'react-router-dom';
 
 const ForgotPass = () => {
+
+    
   return (
     <div>
       <div className="logo-name">Money Managed</div>
       <div className="img-div">
-        {/* <img src={Logo} alt="Money Managed Logo" className="logo" /> */}
+        <img src={Logo} alt="Money Managed Logo" className="logo" />
       </div>
       <div className="inner-forgotpass-div">
         <button type="button" className="bButton">

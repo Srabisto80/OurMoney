@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
-// import logo from '../../moneyManLogo1.png';
+import logo from '../../moneyManLogo1.png';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -23,7 +23,7 @@ const Login = () => {
   return (
     <div className="l-div">
       <div>
-        {/* <img className="logo" src={logo} alt="Money Managed Logo" /> */}
+        <img className="logo" src={logo} alt="Money Managed Logo" />
       </div>
       <div className="logo-name">Money Managed</div>
 

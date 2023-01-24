@@ -1,0 +1,66 @@
+body {
+    background-color: var(--green);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+h5 {
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: bold;
+    padding-top: 2rem;
+}
+p {
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+input {
+    height: 60px;
+    width: 300px;
+    background-color: var(--gray);
+    border-radius: 15px;
+    border-style: hidden;
+    font-size: 25px;
+    /* border-color: var(--gray); */
+}
+.logo-name {
+    font-size: 40px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    -webkit-text-stroke: 1.5px var(--black);
+}
+.inner-bill-div {
+    background-color: #FFFFFF;
+    text-align: center;
+    border-radius: 25px;
+    margin-left: -0.5rem;
+    margin-top: 15rem;
+    height: 39rem;
+    width: 24.5rem;
+}
+.bButton{
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-size: 10px;
+    padding: 11px 20px 11px 20px;
+    background: linear-gradient(180deg, var(--green) 26.71%, var(--green) 99.36%);
+    box-shadow: 0px 20px 24px 3px #00d63208;
+   margin-left: 70%;
+   margin-top: 5%;
+}
+.logo{
+    width: 5%;
+    margin-left: 47%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+@media (min-width:1025px) {
+    .inner-bill-div {
+        display: block;
+        margin: 0 auto;
+    }
+}

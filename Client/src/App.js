@@ -25,8 +25,8 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './Components/login/Login';
 import ForgotPass from './Components/forgotpass/ForgotPass';
 import Register from './Components/register/Register';
-// import addIncome from './pages/addIncome';
-// import addBill from './pages/addBill';
+import AddIncome from './Components/addincome/AddIncome';
+// import AddBill from './Components/addBill/AddBill';
 
 function App() {
   return (
@@ -35,8 +35,8 @@ function App() {
             <Route exact path="/" element={<Login />} />
             <Route path="/ForgotPass" element={<ForgotPass />} />
             <Route path="/Register" element={<Register />} />
-            <Route path="/AddIncome" element={<addIncome />} />
-            <Route path="/AddBill" element={<addBill />} />
+            <Route path="/AddIncome" element={<AddIncome />} />
+            {/* <Route path="/AddBill" element={<AddBill />} /> */}
         </Routes>
     </div>
   );
