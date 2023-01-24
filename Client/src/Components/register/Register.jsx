@@ -23,19 +23,24 @@ import Logo from '../../moneyManLogo1.png';
     // const [goToLogin, setGoToLogin] = useState(false);
     const handleSubmit = async (e) => {
       e.preventDefault();
+      console.log("submit", formState)
       //going to pass form state into post
       try {
         const response = await axios.post(
-          'http://localhost:8080/api/Register',
+          'http://localhost:3001/api/Register',
           // eslint-disable-next-line no-undef
-          JSON.stringify({ firstName, lastName, email, password }),
+          formState,
           {
-            headers: { 'Content-Type': 'application/json' },
-            withCredentials: true,
+            headers: { 'Content-Type': 'application/json', 'accept': 'application/json' }
           },
-        );
+        ); 
         console.log(response.data);
         console.log(JSON.stringify(response));
+        if (response) {
+          console.log('successful response');
+          return response.data;
+        }
+       
       } catch (err) {
         if (!err?.response) {
           setMessage('No Server Response');
@@ -54,12 +59,12 @@ import Logo from '../../moneyManLogo1.png';
           <div className="img-div">
             <img src={Logo} alt="Money Managed Logo" className="logo" />
           </div>
-          <form onSubmit={handleSubmit} className="inner-register-div">
+          <form className="inner-register-div">
             <h5>Create An Account</h5>
             <input
               type="text"
               name="firstName"
-              onChange={handleFormInput}
+              onChange={(e)=>handleFormInput(e)}
               placeholder="First Name"
               required
             />
@@ -68,7 +73,7 @@ import Logo from '../../moneyManLogo1.png';
             <input
               type="text"
               name="lastName"
-              onChange={handleFormInput}
+              onChange={(e)=>handleFormInput(e)}
               placeholder="Last Name"
               required
             />
@@ -78,7 +83,7 @@ import Logo from '../../moneyManLogo1.png';
               type="email"
               id="email"
               name="email"
-              onChange={handleFormInput}
+              onChange={(e)=>handleFormInput(e)}
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
               placeholder="Email"
             />
@@ -87,7 +92,7 @@ import Logo from '../../moneyManLogo1.png';
             <input
               type="password"
               id="password"
-              onChange={handleFormInput}
+              onChange={(e)=>handleFormInput(e)}
               name="password"
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
@@ -99,7 +104,7 @@ import Logo from '../../moneyManLogo1.png';
             <input
               type="password"
               id="confirmPassword"
-              onChange={handleFormInput}
+              onChange={(e)=>handleFormInput(e)}
               name="confirmPassword"
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
@@ -108,7 +113,7 @@ import Logo from '../../moneyManLogo1.png';
             />
             <br />
             <br />
-            <button type="submit" className="button">
+            <button type="submit" onClick={(e)=>handleSubmit(e)} className="button">
               SIGN UP
             </button>
             {/* {name === 'password' && <input type="submit" value="Submit" title="submitUser" />} */}
