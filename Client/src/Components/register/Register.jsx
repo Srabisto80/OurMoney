@@ -3,7 +3,7 @@ import "./Register.css";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-// import Logo from '../../assets/moneyManLogo1.png';
+import Logo from '../../moneyManLogo1.png';
 
 
   const Register = () => {
@@ -52,7 +52,7 @@ import axios from 'axios';
         <div>
           <div className="logo-name">Money Managed</div>
           <div className="img-div">
-            {/* <img src={Logo} alt="Money Managed Logo" className="logo" /> */}
+            <img src={Logo} alt="Money Managed Logo" className="logo" />
           </div>
           <form onSubmit={handleSubmit} className="inner-register-div">
             <h5>Create An Account</h5>
