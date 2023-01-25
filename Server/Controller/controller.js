@@ -46,7 +46,7 @@ const User = CreateUser;
     }
   }
 
-  const loginUser =  async (req, res, next) => {
+  const loginUser =  async (req, res) => {
     
     const { email, password } = req.body;
     console.log(req.body, "The Body");
@@ -79,7 +79,7 @@ const User = CreateUser;
             // respond 400 if password is incorrect
             return res.status(400).json({ message: 'Incorrect password' });
           } else {
-            return res.status(200).json(user);
+            return res.status(200).json(user.email);
           }
         }
       }
@@ -88,5 +88,42 @@ const User = CreateUser;
       throw error;
     }
   }
-// };
-module.exports = { registerNewUser, loginUser };
+
+    const forgotPass = async (req, res) => {
+      const userEmail = req.body.email;
+      console.log("forgot pass start", userEmail);
+      try {
+        console.log("line 96")
+        const user = User.findOne({ email: userEmail });
+        console.log(user);
+        if (!user) {
+          return res.status(404).json({ message: 'Email not registered.' });
+        } else {
+          // console.log(res.json(data))
+          // return res.status(200).json(data)
+        }
+
+      } catch (error) {
+      console.error(error);
+      throw error;
+    }
+    }
+
+    const addNewIncome = async (req, res) => {
+      console.log(req.newPayor, req.newIncome)
+
+    }
+
+//   const getData = async (req,res) => {
+//     console.log("getting data");
+//     try {
+//       const userEmail = req.params.email;
+//       console.log(userEmail);
+      
+//     } catch (error) {
+//       console.error(error);
+//       throw error;
+//     }
+//   }
+// // };
+module.exports = { registerNewUser, loginUser, forgotPass, addNewIncome };

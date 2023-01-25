@@ -1,8 +1,15 @@
-import React from 'react';
-import './AddBill.css';
-import Logo from '../../moneyManLogo1.png';
+import React, { useState } from "react";
+import "./AddBill.css";
+import Logo from "../../moneyManLogo1.png";
+// import { Link } from "react-router-dom";
+// import axios from "axios";
 
 const AddBill = () => {
+
+  const [newBill, setnewBill] = useState({});
+
+
+
   return (
     <div>
       <div className="logo-name">Money Managed</div>
