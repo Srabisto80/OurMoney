@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AddIncome.css';
 import Logo from '../../moneyManLogo1.png';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom" 
 
-const addIncome = () => {
+const AddIncome = () => {
+
+  const [newIncome, setnewIncome] = useState("");
+  const [newPayor, setnewPayor] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    console.log(newPayor, newIncome)
+    axios
+      .post("http://localhost:3001/api/AddNewIncome", {income: {newPayor, newIncome}}, {
+        headers: { 'Content-Type': 'application/json', 'accept': 'application/json' }
+      })
+      .then((res) => {
+        console.log(res)
+        navigate("/Dashboard");
+      },)
+      // catch((err) => console.log("err", err));
+  }
   return (
     <div>
       <div className="logo-name">Money Managed</div>
@@ -10,24 +30,22 @@ const addIncome = () => {
         <img src={Logo} alt="Money Managed Logo" className="logo" />
       </div>
       <div className="inner-income-div">
-        <button type="button" className="bButton">
-          BACK
-        </button>
+        <Link to="/">BACK</Link>
         <h5>Add Income</h5>
-        <input type="text" name="type" placeholder="Income Type" required />
+        <input type="text" name="Payor" placeholder="Who Paid You?" onChange={(e) => setnewPayor(e.target.value)} required />
         <br />
         <br />
-        <input type="text" name="amount" placeholder="Amount" required />
+        <br />
+        <input type="number" name="amount" placeholder="Payment Amount" onChange={(e) => setnewIncome(e.target.value)} required />
         <br />
         <br />
-        <input type="text" name="iname" placeholder="Name" required />
         <br />
-        <br />
-        <button type="button" className="button">
+        <button type="button" className="button" onClick={ handleSubmit }>
           Add Income
         </button>
       </div>
     </div>
-  );
+  )
 };
-export default addIncome;
+
+export default AddIncome;

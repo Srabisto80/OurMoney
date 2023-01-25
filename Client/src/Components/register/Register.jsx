@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./Register.css";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import { useNavigate } from "react-router-dom" //Navigate
 import Logo from '../../moneyManLogo1.png';
 
 
@@ -11,7 +11,8 @@ import Logo from '../../moneyManLogo1.png';
     // // setName('Owen')
     const [formState, setFormState] = useState({});
     const [message, setMessage] = useState('');
-  
+    const navigate = useNavigate()
+
     const handleFormInput = (e) => {
       setFormState({
         ...formState,
@@ -38,6 +39,8 @@ import Logo from '../../moneyManLogo1.png';
         console.log(JSON.stringify(response));
         if (response) {
           console.log('successful response');
+          window.alert("Successful registration. Please log in.");
+          navigate("/");
           return response.data;
         }
        
