@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import "./AddBill.css";
 import Logo from "../../moneyManLogo1.png";
-// import { Link } from "react-router-dom";
-// import axios from "axios";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const AddBill = () => {
 
-  const [newBill, setnewBill] = useState({});
+  const [newBill, setnewBill] = useState("");
+  const [newBillName, setnewBillName] = useState("")
 
+  const handleSubmit = () => {
+    const addBill = {newBillName: newBill};
+    console.log(addBill);
+    axios
+    .post("http://localhost:3001/api/addNewBill", addBill)
+    .then((res) => 
+      console.log(res))
+  }
 
 
   return (
@@ -17,22 +26,19 @@ const AddBill = () => {
         <img src={Logo} alt="Money Managed Logo" className="logo" />
       </div>
       <div className="inner-bill-div">
-        <button type="button" className="bButton">
-          BACK
-        </button>
+        <Link to="/">BACK</Link>
         <h5>Add Bill</h5>
-        <input type="text" name="name" placeholder="Name" required />
-        <br />
-        <br />
-        <input type="text" name="amount" placeholder="Amount" required />
-        <br />
-        <br />
-        <input type="text" name="iname" placeholder="Income" required />
+        <input type="text" name="name" onChange={(e) => setnewBillName(e.target.value)} placeholder="Who do you Owe?" required />
         <br />
         <br />
         <br />
         <br />
-        <button type="button" className="button">
+        <input type="number" name="amount" onChange={(e) => setnewBill(e.target.value)} placeholder="Owed Amount" required />
+        <br />
+        <br />
+        <br />
+        <br />
+        <button type="button" className="button" onClick={handleSubmit}>
           Add Bill
         </button>
       </div>
