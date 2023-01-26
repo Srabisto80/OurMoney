@@ -1,6 +1,4 @@
-
-import React, { useEffect } from "react";
-// import React, { useState } from "react";
+import react from "react";
 import "./Dashboard.css";
 // import logo from "../../moneyManLogo1.png";
 // import { Link } from "react-router-dom";
@@ -70,9 +68,8 @@ const Dashboard = () => {
             <br />
             <button className="back">Back</button>
 
-
-
-
+        </div>
+    )
+}
 
 export default Dashboard
-
