@@ -10,9 +10,7 @@ const AddBill = () => {
         <img src={Logo} alt="Money Managed Logo" className="logo" />
       </div>
       <div className="inner-bill-div">
-        <button type="button" className="bButton">
-          BACK
-        </button>
+        
         <h5>Add Bill</h5>
         <input type="text" name="name" placeholder="Name" required />
         <br />
@@ -27,6 +25,9 @@ const AddBill = () => {
         <br />
         <button type="button" className="button">
           Add Bill
+        </button>
+        <button type="button" className="button">
+          Back
         </button>
       </div>
     </div>

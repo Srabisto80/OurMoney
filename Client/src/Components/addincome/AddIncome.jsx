@@ -10,9 +10,7 @@ const addIncome = () => {
         <img src={Logo} alt="Money Managed Logo" className="logo" />
       </div>
       <div className="inner-income-div">
-        <button type="button" className="bButton">
-          BACK
-        </button>
+        
         <h5>Add Income</h5>
         <input type="text" name="type" placeholder="Income Type" required />
         <br />
@@ -25,6 +23,9 @@ const addIncome = () => {
         <br />
         <button type="button" className="button">
           Add Income
+        </button>
+        <button type="button" className="button">
+          Back
         </button>
       </div>
     </div>
