@@ -10,7 +10,7 @@ body {
     font-weight: 100px;
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: -200px;
+    margin-left: -100px;
 }
 
 .job-name {
@@ -65,7 +65,10 @@ body {
 }
 
 
-
+.page-div{
+    width: 380px;
+    margin-left: 40%;
+  }
 
 
 

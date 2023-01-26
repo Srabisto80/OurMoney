@@ -11,6 +11,7 @@ const AddIncome = () => {
   const navigate = useNavigate();
   const userEmail = localStorage.getItem("email");
   console.log(userEmail);
+  
   const handleSubmit = async (e) => {
     console.log(newPayor, newIncome);
     axios

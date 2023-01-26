@@ -20,6 +20,7 @@
 // }
 import React from 'react';
 import "./index.css";
+import './App.css';
 // import Layout from './Components/Layout';
 import { Routes, Route } from 'react-router-dom';
 import Login from './Components/login/Login';

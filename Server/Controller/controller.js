@@ -126,7 +126,20 @@ const loadDash = async (req, res) => {
 };
 
 const addNewBill = async (req, res) => {
-  console.log(req.addBill);
+  console.log(req.body.addBill);
+  const addBill = req.body.bills;
+  console.log(addBill, req.body.userEmail);
+  try {
+    const user = await User.findOne({ email: req.body.userEmail });
+    console.log(user);
+    user.bills.push(addBill);
+    user.save();
+    console.log(user);
+    return res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
 //   const getData = async (req,res) => {
