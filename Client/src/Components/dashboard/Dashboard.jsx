@@ -1,4 +1,5 @@
-import react from "react";
+import react, {useEffect} from "react";
+
 import "./Dashboard.css";
 // import logo from "../../moneyManLogo1.png";
 // import { Link } from "react-router-dom";
@@ -70,6 +71,6 @@ const Dashboard = () => {
 
         </div>
     )
-}
+};
 
-export default Dashboard
+export default Dashboard;
