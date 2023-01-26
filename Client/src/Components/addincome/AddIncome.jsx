@@ -30,7 +30,9 @@ const AddIncome = () => {
         <img src={Logo} alt="Money Managed Logo" className="logo" />
       </div>
       <div className="inner-income-div">
+
         <Link to="/">BACK</Link>
+
         <h5>Add Income</h5>
         <input type="text" name="Payor" placeholder="Who Paid You?" onChange={(e) => setnewPayor(e.target.value)} required />
         <br />
@@ -42,6 +44,9 @@ const AddIncome = () => {
         <br />
         <button type="button" className="button" onClick={ handleSubmit }>
           Add Income
+        </button>
+        <button type="button" className="button">
+          Back
         </button>
       </div>
     </div>

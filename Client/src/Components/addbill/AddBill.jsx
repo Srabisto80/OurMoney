@@ -26,7 +26,9 @@ const AddBill = () => {
         <img src={Logo} alt="Money Managed Logo" className="logo" />
       </div>
       <div className="inner-bill-div">
+
         <Link to="/">BACK</Link>
+
         <h5>Add Bill</h5>
         <input type="text" name="name" onChange={(e) => setnewBillName(e.target.value)} placeholder="Who do you Owe?" required />
         <br />
@@ -40,6 +42,9 @@ const AddBill = () => {
         <br />
         <button type="button" className="button" onClick={handleSubmit}>
           Add Bill
+        </button>
+        <button type="button" className="button">
+          Back
         </button>
       </div>
     </div>
