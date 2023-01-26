@@ -1,23 +1,37 @@
-import React, { useState } from 'react';
-import './Login.css';
-import logo from '../../moneyManLogo1.png';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import "./Login.css";
+import logo from "../../moneyManLogo1.png";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom" //Navigate
+
 
 const Login = () => {
   // const [userLogin, setUserLogin] = useState('');
   // const [loginForm, setLoginForm] = useState({});
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log('It is working');
+    // e.preventDefault();
+    console.log("It is working");
     console.log(email, password);
-   
-      axios.post('http://localhost:3001/api/Login', { email: email, password: password })
-            .then(res =>console.log(res))
-            .catch(err => console.log('err', err))
+
+    axios
+      .post("http://localhost:3001/api/Login", {
+        email: email,
+        password: password,
+      }, {
+        headers: { 'Content-Type': 'application/json', 'accept': 'application/json' }
+      })
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem( "email", res.data ) ;
+        console.log(localStorage)
+        navigate("/Dashboard");
+      })
+      .catch((err) => console.log("err", err));
   };
 
   return (
@@ -51,7 +65,11 @@ const Login = () => {
         <br />
         <br />
         <br />
-        <button type="submit" className="button" onClick={(e) => handleSubmit(e)}>
+        <button
+          type="submit"
+          className="button"
+          onClick={(e) => handleSubmit(e)}
+        >
           Login
         </button>
         <h5>
