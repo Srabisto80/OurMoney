@@ -1,10 +1,27 @@
 import react from "react";
 import "./Dashboard.css";
-
-
-import React from 'react'
+// import logo from "../../moneyManLogo1.png";
+// import { Link } from "react-router-dom";
+import axios from "axios";
+// import { useNavigate } from "react-router-dom" 
 
 const Dashboard = () => {
+    // e.preventDefault();
+    console.log(localStorage.getItem('email'))
+   const userEmail = localStorage.getItem('email')
+    console.log(userEmail);
+
+   useEffect(() => {
+    console.log("use effect")
+    axios
+        .post("http://localhost:3001/api/Dash", { userEmail })
+        .then((res) => {
+            console.log(res)
+            
+        })
+    }, [])
+
+
     return (
         <div className="page-div">
             <div className="user-name">Korra Teasley</div>
