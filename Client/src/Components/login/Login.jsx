@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom" //Navigate
 
 
 const Login = () => {
+  localStorage.clear();
   // const [userLogin, setUserLogin] = useState('');
   // const [loginForm, setLoginForm] = useState({});
   const [email, setEmail] = useState("");
@@ -57,7 +58,7 @@ const Login = () => {
         <br />
         <br />
         <input
-          type="text"
+          type="password"
           onChange={(e) => setPassword(e.target.value)}
           className="login-password"
           placeholder="Password"

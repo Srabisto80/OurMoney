@@ -86,7 +86,7 @@ const forgotPass = async (req, res) => {
   console.log("forgot pass start", userEmail);
   try {
     console.log("line 96");
-    const user = User.findOne({ email: userEmail });
+    const user = await User.findOne({ email: userEmail });
     console.log(user);
     if (!user) {
       return res.status(404).json({ message: "Email not registered." });
@@ -101,21 +101,46 @@ const forgotPass = async (req, res) => {
 };
 
 const addNewIncome = async (req, res) => {
-  console.log(req.newPayor, req.newIncome);
+  const addIncome = req.body.income;
+  console.log(addIncome, req.body.userEmail);
+  try {
+    const user = await User.findOne({ email: req.body.userEmail });
+    console.log(user);
+    user.income.push(addIncome);
+    user.save();
+    console.log(user);
+    return res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
 const loadDash = async (req, res) => {
   console.log(req.url, req.method, req.body);
   const userEmail = req.body.userEmail;
   console.log(userEmail);
-  const user = await User.findOne({email:userEmail});
-  console.log(user)
-  return res.status(200).json(user)
+  const user = await User.findOne({ email: userEmail });
+  console.log(user);
+  return res.status(200).json(user);
 };
 
 const addNewBill = async (req, res) => {
-  
-}
+  console.log(req.body.addBill);
+  const addBill = req.body.bills;
+  console.log(addBill, req.body.userEmail);
+  try {
+    const user = await User.findOne({ email: req.body.userEmail });
+    console.log(user);
+    user.bills.push(addBill);
+    user.save();
+    console.log(user);
+    return res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
 
 //   const getData = async (req,res) => {
 //     console.log("getting data");

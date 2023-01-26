@@ -3,19 +3,30 @@ import "./AddBill.css";
 import Logo from "../../moneyManLogo1.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddBill = () => {
 
   const [newBill, setnewBill] = useState("");
   const [newBillName, setnewBillName] = useState("")
+  const navigate = useNavigate();
+  const userEmail = localStorage.getItem("email");
 
-  const handleSubmit = () => {
-    const addBill = {newBillName: newBill};
-    console.log(addBill);
+  const handleSubmit = async (e) => {
+    // const addBill = {newBillName: newBill};
+    // console.log(addBill);
     axios
-    .post("http://localhost:3001/api/addNewBill", addBill)
+    .post("http://localhost:3001/api/addNewBill", { userEmail, bills: {newBillName, newBill}},
+    {
+      headers: {
+        "Content-Type": "application/json",
+        accept: "application/json",
+      },
+    })
     .then((res) => 
       console.log(res))
+      alert("Successfully added Bill!")
+      navigate("/Dashboard")
   }
 
 
@@ -26,9 +37,7 @@ const AddBill = () => {
         <img src={Logo} alt="Money Managed Logo" className="logo" />
       </div>
       <div className="inner-bill-div">
-        <button type="button" className="bButton">
-          BACK
-        </button>
+      <Link to="/Dashboard">BACK</Link>
         <h5>Add Bill</h5>
         <input type="text" name="name" onChange={(e) => setnewBillName(e.target.value)} placeholder="Who do you Owe?" required />
         <br />
@@ -43,9 +52,8 @@ const AddBill = () => {
         <button type="button" className="button" onClick={handleSubmit}>
           Add Bill
         </button>
-        <button type="button" className="button">
-          Back
-        </button>
+        <br />
+        <Link to="/Dashboard" className="button">BACK</Link>
       </div>
     </div>
   );

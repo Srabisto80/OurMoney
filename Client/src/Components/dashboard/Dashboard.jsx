@@ -1,38 +1,64 @@
-import react, {useEffect} from "react";
+import {useEffect} from "react";
+// import react, {useEffect} from "react";
 
 import "./Dashboard.css";
 // import logo from "../../moneyManLogo1.png";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 // import { useNavigate } from "react-router-dom" 
 
 const Dashboard = () => {
     // e.preventDefault();
-    console.log(localStorage.getItem('email'))
+    // console.log(localStorage.getItem('email'))
    const userEmail = localStorage.getItem('email')
-    console.log(userEmail);
+    // console.log(userEmail);
+    // const navigate = useNavigate();
 
    useEffect(() => {
     console.log("use effect")
     axios
         .post("http://localhost:3001/api/Dash", { userEmail })
-        .then((res) => {
-            console.log(res)
-            
+        .then((res) => { 
+            // console.log(res)
+            localStorage.setItem("name", res.data.firstName + " " + res.data.lastName)
+            // localStorage.setItem("bills", res.data.bills)
+            // localStorage.setItem("income", res.data.income)
+            // localStorage.setItem("total", res.data.total)
+            const incomeArray = res.data.income
+            console.log(incomeArray);
+            const billArray = res.data.bills
+            console.log(billArray)
+            console.log(localStorage)
         })
     }, [])
 
 
+    // const incomeList = () =>{
+    //     incomeArray.map(each) => {
+
+    //     }
+    // }
+
     return (
         <div className="page-div">
-            <div className="user-name">Korra Teasley</div>
+            <div className="user-name">{localStorage.getItem("name")}</div>
 
 
 
             <div className="balance-div">
-                <br />
-                <div className="job-name">BANYAN LABS</div>
-                <div className="paystub-amount">$1,120.45</div>
+                <br /> 
+                <div  className="job-name">
+                {/* {incomeArray.map((item) => (
+                    <li>{item.newBillName}</li>
+                    <li>{item.newBill}</li>
+                ))} */}
+                        <div className="paystub-amount">
+                          Fry's {/* {item.newBillName}  */}
+                        </div>
+                        <div className="paystub-amount">
+                           $300.45{/* {item.newBill}  */}
+                        </div>
+                    </div>
                 <div className="pay-frequency">BIWEEKLY</div>
                 <div className="remaning-balance">
                     $34.20
@@ -40,7 +66,7 @@ const Dashboard = () => {
                 <p className="remaining-p">REMAINING</p>
             </div>
             <br />
-            <button className="balance-edit-btn edit-btn button">Add Income</button>
+            <Link to="/AddIncome" className="balance-edit-btn edit-btn button">Add Income</Link>
             <br />
             <br />
 
@@ -64,10 +90,10 @@ const Dashboard = () => {
                 </div>
             </div>
             <br />
-            <button className="edit-bills edit-btn button">Add Bill</button>
+            <Link to="/AddBill" className="edit-bills edit-btn button">Add Bill</Link>
             <br />
             <br />
-            <button className="back">Back</button>
+            <Link to="/" className="back">Back</Link>
 
         </div>
     )
