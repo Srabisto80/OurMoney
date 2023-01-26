@@ -26,7 +26,9 @@ import Login from './Components/login/Login';
 import ForgotPass from './Components/forgotpass/ForgotPass';
 import Register from './Components/register/Register';
 import AddIncome from './Components/addincome/AddIncome';
-// import AddBill from './Components/addBill/AddBill';
+import AddBill from './Components/addbill/AddBill';
+import Dashboard from './Components/dashboard/Dashboard';
+
 
 function App() {
   return (
@@ -36,7 +38,8 @@ function App() {
             <Route path="/ForgotPass" element={<ForgotPass />} />
             <Route path="/Register" element={<Register />} />
             <Route path="/AddIncome" element={<AddIncome />} />
-            {/* <Route path="/AddBill" element={<AddBill />} /> */}
+            <Route path="/AddBill" element={<AddBill />} />
+            <Route path="/Dashboard" element={<Dashboard />} />
         </Routes>
     </div>
   );
